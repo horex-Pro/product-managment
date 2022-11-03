@@ -1,0 +1,12 @@
+.product{
+    width: 80%;
+    height: 80px;
+    padding: 100px 40px;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+}
