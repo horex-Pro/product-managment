@@ -1,5 +1,6 @@
-import React ,{ Component } from "react";
+import React ,{ Component, Fragment } from "react";
 import Product from "./Product";
+
 class ProductsList extends Component
 {
 
@@ -7,7 +8,7 @@ class ProductsList extends Component
         products: [
             { title: 'reactjs', price: '1200$', id: Math.floor( Math.random() * 10 ), quantity:1 },
             { title: 'node.js', price: '1050$', id: Math.floor( Math.random() * 10 ), quantity:2 },
-            { title: 'mango.db', price: '800$', id: Math.floor( Math.random() * 10 ), quantity:5 },
+            { title: 'mango.db', price: '800$', id: Math.floor( Math.random() * 10 ), quantity: 5 },
         ]
     }
     oneDelete = ( id ) =>
@@ -36,14 +37,15 @@ class ProductsList extends Component
         const clickedItem = products.find( item => item.id === id );
         clickedItem.quantity--;
 
-        
-        this.setState( {
-            products: products
-        } );
-
         if ( clickedItem.quantity === 0 )
         {
             this.oneDelete( id );
+        }
+        else
+        {
+            this.setState( {
+                products: products
+            } );
         }
     }
     onChange = (event,id) =>
@@ -59,7 +61,7 @@ class ProductsList extends Component
 
     }
 
-    render ()
+    renderProducts = () =>
     {
         return (
             <div className="container">
@@ -79,6 +81,17 @@ class ProductsList extends Component
             })
                 }
             </div>
+        )
+    }
+
+    render ()
+    {
+        return (
+            <Fragment>
+                {
+                    this.state.products.length ? this.renderProducts() : <div>your card is empty</div>
+            }
+            </Fragment>
         )
     }
 

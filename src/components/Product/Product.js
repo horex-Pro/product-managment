@@ -1,4 +1,5 @@
 import styles from './product.module.css'
+import { AiFillDelete } from "react-icons/ai";
 
 const Product = ( props ) =>
 {
@@ -17,8 +18,10 @@ const Product = ( props ) =>
                 {props.product.quantity}
             </span>
             <input onChange={props.onChange} value={props.product.title}/>
-            <button onClick={ props.onIncrement }>increment</button>
-            <button onClick={props.onDecrement}>decrement</button>
+            <button onClick={ props.onIncrement }>+</button>
+            <button onClick={ props.onDecrement }>{
+                props.product.quantity > 1 ? '-' : <AiFillDelete/>
+            }</button>
             <button onClick={props.onDelete}>Delete</button>
         </div>
     )
