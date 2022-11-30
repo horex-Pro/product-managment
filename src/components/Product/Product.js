@@ -17,9 +17,9 @@ const Product = ( props ) =>
             <span>
                 {props.product.quantity}
             </span>
-            <input onChange={props.onChange} value={props.product.title}/>
-            <button onClick={ props.onIncrement }>+</button>
-            <button onClick={ props.onDecrement }>{
+            <input onChange={props.onChange} value={props.product.title} className={`${styles.buttons}`}/>
+            <button onClick={ props.onIncrement } className={`${styles.buttons}`}>+</button>
+            <button onClick={ props.onDecrement } className={`${styles.remove} ${styles.buttons}`}>{
                 props.product.quantity > 1 ? '-' : <AiFillDelete/>
             }</button>
             <button onClick={props.onDelete}>Delete</button>

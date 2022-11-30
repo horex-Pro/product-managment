@@ -1,21 +1,15 @@
 .app{
     width: 100%;
     height: 100vh;
-    overflow-x: auto;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
+}
+.app > *{
+    width: 100%;
 }
 .btn{
     width:80px;
     height: 50px;
-}
-.container{
-    width: 100%;
-    height: 50vh;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
 }
