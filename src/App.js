@@ -9,9 +9,9 @@ class App extends Component
 {
     state = {
         products: [
-            { title: 'reactjs', price: '1200$', id: Math.floor( Math.random() * 10 ), quantity:1 },
-            { title: 'node.js', price: '1050$', id: Math.floor( Math.random() * 10 ), quantity:2 },
-            { title: 'mango.db', price: '800$', id: Math.floor( Math.random() * 10 ), quantity: 5 },
+            { title: 'reactjs', price: '1200$', id: Math.random(), quantity:1 },
+            { title: 'node.js', price: '1050$', id: Math.random(), quantity:2 },
+            { title: 'mango.db', price: '800$', id: Math.random(), quantity: 5 },
         ]
     }
     oneDelete = ( id ) =>
@@ -24,55 +24,63 @@ class App extends Component
     }
     onIncrement = ( id ) =>
     {
-        const products = [ ...this.state.products ];
-        const clickedItem = products.find( item => item.id === id );
-        clickedItem.quantity++;
+        const index = this.state.products.findIndex( (item) => item.id === id );
+        const selectedProduct = { ...this.state.products[ index ] };
+        selectedProduct.quantity++;
 
-        this.setState( {
-            products: products
-        })
+        const products = [...this.state.products] ;
+
+        products[index] = selectedProduct;
+
+        this.setState({products})
+
         
     }
+
     onDecrement = ( id ) =>
     {
-        const products = [ ...this.state.products ];
-        const clickedItem = products.find( item => item.id === id );
-        clickedItem.quantity--;
+        const index = this.state.products.findIndex( (item) => item.id === id );
+        const selectedProduct = { ...this.state.products[ index ] };
+        selectedProduct.quantity--;
 
-        if ( clickedItem.quantity === 0 )
-        {
-            this.oneDelete( id );
-        }
-        else
-        {
-            this.setState( {
-                products: products
-            } );
-        }
+        const products = [...this.state.products] ;
+
+        products[index] = selectedProduct;
+
+        this.setState({products})
     }
+
     onChange = (event,id) =>
     {
-        const productsList = [ ...this.state.products ];
-        const clickedItem = productsList.find( item => item.id === id );
-        clickedItem.title = event.target.value;
-
-        this.setState( {
-            products:productsList
-        })
         
+        const index = this.state.products.findIndex( ( item ) => item.id === id );
+        const selectedProduct = { ...this.state.products[ index ] };
+        selectedProduct.title = event.target.value;
 
+        const products = [ ...this.state.products ];
+
+        products[ index ] = selectedProduct;
+
+        this.setState({products})
+    }
+
+    componentDidUpdate ( prevProps, prevState )
+    {
+        console.log( prevState )
+        return true
     }
 
     render ()
     {
+        const { products } = this.state
         return (
             <div className='app' style={ styles.app }>
                 <Navbar
-                    quantity={this.state.products.length}
+                    quantity={products.length}
                 />
                 <h1>shoping items</h1>
                 <ProductsList
-                    products={ this.state.products }
+                    products={ products }
                     oneDelete={ this.oneDelete }
                     onIncrement={ this.onIncrement }
                     onDecrement={ this.onDecrement }

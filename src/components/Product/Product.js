@@ -1,28 +1,26 @@
 import styles from './product.module.css'
 import { AiFillDelete } from "react-icons/ai";
 
-const Product = ( props ) =>
+const Product = ( { onChange, onDecrement, onIncrement, onDelete , product } ) =>
 {
+
     return (
         <div className={styles.product}>
             <h1>
-                {props.product.title}
+                {product.title}
             </h1>
             <h2>
-                {props.product.price}
+                {product.price}
             </h2>
             <span>
-                {props.product.id}
+                {product.quantity}
             </span>
-            <span>
-                {props.product.quantity}
-            </span>
-            <input onChange={props.onChange} value={props.product.title} className={`${styles.buttons}`}/>
-            <button onClick={ props.onIncrement } className={`${styles.buttons}`}>+</button>
-            <button onClick={ props.onDecrement } className={`${styles.remove} ${styles.buttons}`}>{
-                props.product.quantity > 1 ? '-' : <AiFillDelete/>
+            <input onChange={onChange} value={product.title} className={`${styles.buttons}`}/>
+            <button onClick={onIncrement } className={`${styles.buttons}`}>+</button>
+            <button onClick={onDecrement } className={`${styles.remove} ${styles.buttons}`}>{
+                product.quantity > 1 ? '-' : <AiFillDelete/>
             }</button>
-            <button onClick={props.onDelete}>Delete</button>
+            <button onClick={onDelete}>Delete</button>
         </div>
     )
 }

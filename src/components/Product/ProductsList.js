@@ -6,17 +6,18 @@ class ProductsList extends Component
 
     renderProducts = () =>
     {
+        const {products , oneDelete , onIncrement , onDecrement , onChange} = this.props
         return (
-            this.props.products.map( ( item, index ) =>
+            products.map( ( item, index ) =>
             {
                 return (
                     <Product
                         product={ item }
                         key={ index }
-                        onDelete={ () => this.props.oneDelete( item.id ) }
-                        onIncrement={ () => this.props.onIncrement( item.id ) }
-                        onDecrement={ () => this.props.onDecrement( item.id ) }
-                        onChange={ ( event ) => this.props.onChange( event, item.id ) }
+                        onDelete={ () => oneDelete( item.id ) }
+                        onIncrement={ () => onIncrement( item.id ) }
+                        onDecrement={ () => onDecrement( item.id ) }
+                        onChange={ ( event ) => onChange( event, item.id ) }
                     />
                 );
             } )
@@ -26,9 +27,10 @@ class ProductsList extends Component
 
     render ()
     {
+        const { products } = this.props;
         return (
             <Fragment>
-                { this.props.products.length ? this.renderProducts() : <div>your card is empty</div> }
+                { products.length ? this.renderProducts() : <div>your card is empty</div> }
             </Fragment>
         )
     }
