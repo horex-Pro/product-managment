@@ -1,8 +1,10 @@
 
-import styles from './app.css'
 import { Component } from "react";
+import styles from './app.css'
 import ProductsList from './components/Product/ProductsList';
 import Navbar from "./components/Product/Navbar";
+
+// import ClassCounter from "./Counter";
 
 
 class App extends Component
@@ -41,13 +43,21 @@ class App extends Component
     {
         const index = this.state.products.findIndex( (item) => item.id === id );
         const selectedProduct = { ...this.state.products[ index ] };
-        selectedProduct.quantity--;
-
-        const products = [...this.state.products] ;
-
-        products[index] = selectedProduct;
-
-        this.setState({products})
+        if ( selectedProduct.quantity === 1 )
+        {
+            const filteredProducts = this.state.products.filter( item => item.id !== id )
+            this.setState({products:filteredProducts})
+        }
+        else
+        {
+            selectedProduct.quantity--;
+    
+            const products = [...this.state.products] ;
+    
+            products[index] = selectedProduct;
+    
+            this.setState({products})
+        }
     }
 
     onChange = (event,id) =>

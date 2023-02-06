@@ -1,8 +1,14 @@
 import styles from './product.module.css'
 import { AiFillDelete } from "react-icons/ai";
+import { useEffect } from 'react';
 
 const Product = ( { onChange, onDecrement, onIncrement, onDelete , product } ) =>
 {
+
+    useEffect( () =>
+    {
+        console.log('use effect')
+    },[])
 
     return (
         <div className={styles.product}>
