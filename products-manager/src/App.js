@@ -1,25 +1,72 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Component } from "react";
+import ProductsList from "./components/ProductsList/ProductsList";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component
+{
+
+    state = {
+        products: [
+            { title: 'React JS', id: Math.random(), price: 1200, quantity:1},
+            { title: 'Node JS', id: Math.random(), price: 100, quantity:2},
+            { title: 'Nuxt JS', id: Math.random(), price: 1400, quantity:3},
+            { title: 'Mango JS', id: Math.random() , price: 1500, quantity:1},
+        ]
+    }
+
+    incrementHanadler = (id) =>{
+        const products = [ ...this.state.products ]
+        const selectedItem = products.find( i => i.id === id );
+
+        selectedItem.quantity++
+        
+        this.setState({products})
+    }
+
+    decrementHnadler = ( id ) =>
+    {
+        const products = [ ...this.state.products ]
+        const selectedItem = products.find( i => i.id === id );
+
+        selectedItem.quantity--
+        
+        this.setState({products})
+    }
+
+    deleteHandler = ( id ) =>
+    {
+        const products = [ ...this.state.products ];
+        const filteredIProducts = products.filter( ( i ) => i.id !== id );
+
+        this.setState({products:filteredIProducts})
+    }
+
+    renderProducts = () =>
+    {
+        if ( this.state.products.length )
+            return (
+            <ProductsList
+                product={ this.state.products }
+                onIncremet={ () => this.incrementHanadler }
+                onDecrement={ () => this.decrementHnadler }
+                onDelete = {()=> this.deleteHandler}
+            />
+        )
+        else
+            return(<div>your cart is empty</div>)
+    }
+        
+
+    render ()
+    {
+        return (
+            <div>
+                { !this.state.products.length ? 'go to shooping' : null }
+                {this.renderProducts()}
+            </div>
+        )
+    }
 }
 
 export default App;

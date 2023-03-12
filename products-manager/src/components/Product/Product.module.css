@@ -1,0 +1,19 @@
+.product{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    height: 60px;
+    padding: 20px;
+    background-color: #f3e8ff;
+    border-radius: 20px;
+}
+
+.button{
+    border: 1px solid #4c1d95;
+    background-color: transparent;
+    color: #4c1d95;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
