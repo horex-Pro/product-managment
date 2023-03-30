@@ -42,6 +42,11 @@ class App extends Component
         this.setState({products:filteredIProducts})
     }
 
+    changeHandler = ( e ) =>
+    {
+        console.log(e)
+    }
+
     renderProducts = () =>
     {
         if ( this.state.products.length )
@@ -51,6 +56,7 @@ class App extends Component
                 onIncremet={ () => this.incrementHanadler }
                 onDecrement={ () => this.decrementHnadler }
                 onDelete = {()=> this.deleteHandler}
+                onChange = {this.changeHandler}
             />
         )
         else

@@ -23,7 +23,8 @@ class ProductsList extends Component
                                 key={ i.id }
                                 onIncremet={ this.props.onIncremet() }
                                 onDecrement={this.props.onDecrement()}
-                                onDelete={this.props.onDelete()}
+                                onDelete={ this.props.onDelete() }
+                                onChange={this.props.onChange}
                             />
                         )
                     } )
