@@ -30,8 +30,11 @@ class App extends Component
         const selectedItem = products.find( i => i.id === id );
 
         selectedItem.quantity--
-        
-        this.setState({products})
+
+        if ( selectedItem.quantity )
+            this.setState( { products } );
+        else
+            this.deleteHandler( id )
     }
 
     deleteHandler = ( id ) =>
@@ -42,9 +45,13 @@ class App extends Component
         this.setState({products:filteredIProducts})
     }
 
-    changeHandler = ( e ) =>
+    changeHandler = (e) =>
     {
-        console.log(e)
+        const id = e.target.parentElement.id;
+        const products = [ ...this.state.products ];
+        const selectedItem = products.find( item  => item.id === id );
+
+        console.log(id,products,selectedItem)
     }
 
     renderProducts = () =>
@@ -56,7 +63,7 @@ class App extends Component
                 onIncremet={ () => this.incrementHanadler }
                 onDecrement={ () => this.decrementHnadler }
                 onDelete = {()=> this.deleteHandler}
-                onChange = {this.changeHandler}
+                onChange = {(e)=>this.changeHandler}
             />
         )
         else
