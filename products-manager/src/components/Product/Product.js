@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component , useContext} from "react";
 import styles from './Product.module.css'
 import { FaTrash } from "react-icons/fa";
 

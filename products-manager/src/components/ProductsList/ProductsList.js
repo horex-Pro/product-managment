@@ -1,12 +1,12 @@
-import { Component } from "react";
+import { Component, useContext } from "react";
 import Product from "../Product/Product";
 
 import styles from './ProductList.module.css'
 
 
-
 class ProductsList extends Component
 {
+
     render ()
     {
         return (
